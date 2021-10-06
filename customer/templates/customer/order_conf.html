@@ -1,33 +1,13 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-5 col-sm-8 p-4 text-center">
-
-
-            <h1>Order Submitted!</h1>
-            <p class="font-italic font-weight-bolder">You will be served soon.</p>
-            <a href="{% url 'index' %}">Homepage</a>
-        </div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 col-sm-12 p-4 text-center">
+        <h1>Order Submitted!</h1>
     </div>
-
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5 col-sm-12 text-center">
-            <h3 class="pb-3">Order Summary:</h3>
-            {% for item in items %}
-                <p>{{ item.name }} <span class="pl-3"> @ {{ item.price }}</span></p>
-            {% endfor %}
-            <hr>
-            <p class="font-weight-bold pt-4">Total: {{ price }}</p>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{{ message.tags }} font-weight-bolder">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        </div>
+    <div class="col-md-5 col-sm-12 p-3 text-center">
+        <p class="font-italic font-weight-bolder">You will be served soon.</p>
+        <a href="{% url 'index' %}">Homepage</a>
     </div>
 </div>
 {% endblock content %}

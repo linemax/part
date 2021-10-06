@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 
 # Create your views here.
-from customer.models import MenuItem, OrderModel
+from customer.models import MenuItem, OrderModel, Category
 
 
 class Index(View):
@@ -20,21 +20,9 @@ class About(View):
 class Order(View):
     def get(self, request, *args, **kwargs):
         # get every item from each category
-        drinks = MenuItem.objects.filter(category__name__contains='Drinks')
-        dessert = MenuItem.objects.filter(category__name__contains='Dessert')
-        starter = MenuItem.objects.filter(category__name__contains='Starter')
-        special = MenuItem.objects.filter(category__name__contains='special')
-        breakfast = MenuItem.objects.filter(category__name__contains='Breakfast')
-        beverages = MenuItem.objects.filter(category__name__contains='Beverages')
-        # pass to context
-        context = {
-            'starter': starter,
-            "drinks": drinks,
-            'dessert': dessert,
-            'special': special,
-            'breakfast': breakfast,
-            "beverages": beverages,
-        }
+        categories = Category.objects.all()
+        menu_items = MenuItem.objects.all()
+        context = {'categories': categories, 'menu_items': menu_items}
         # render
         return render(request, 'customer/order.html', context)
 
