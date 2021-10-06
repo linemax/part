@@ -1,0 +1,162 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+
+
+
+<div class="container mb-5">
+    <div class="row">
+     <label>
+         <input class="search-label-icon mr-auto" type="search" value="{{ search }}"><a href="{% url 'search' %}">Search</a>
+     </label>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="pt-5">
+                    {% for app in Starter %}
+
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ app.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ app.pk }}">
+                                    <label class="form-check-label">{{ app.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ app.price }}</p>
+                            </div>
+                            <p>{{ app.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                {% endfor %}
+                </div>
+                <div class="pt-5">
+                    {% for desserts in dessert %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ desserts.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ desserts.pk }}">
+                                    <label class="form-check-label">{{ desserts.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ desserts.price }}</p>
+                            </div>
+                            <p>{{ desserts.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                <div class="pt-5">
+                    {% for sp in special %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ sp.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ sp.pk }}">
+                                    <label class="form-check-label">{{ sp.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ sp.price }}</p>
+                            </div>
+                            <p>{{ sp.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                <div class="pt-5">
+                    {% for drink in drinks %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ drink.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
+                                    <label class="form-check-label">{{ drink.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ drink.price }}</p>
+                            </div>
+                            <p>{{ drink.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                            <div class="pt-5">
+                    {% for s in starter %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ s.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ s.pk }}">
+                                    <label class="form-check-label">{{ s.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ s.price }}</p>
+                            </div>
+                            <p>{{ s.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                            <div class="pt-5">
+                    {% for beverage in beverages %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ beverage.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ beverage.pk }}">
+                                    <label class="form-check-label">{{ beverage.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ beverage.price }}</p>
+                            </div>
+                            <p>{{ beverage.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#submitModal">
+                  Submit
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="submitModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="submitModalLabel">Submit Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit Order</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
