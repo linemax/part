@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
@@ -67,8 +68,9 @@ class Order(View):
             'price': price,
             'orderlist': order_list
         }
+        messages.success(request, 'Your order has been submitted successfully')
         return render(request, 'customer/order_conf.html', context)
-        messeges.
+
 
 
 class Search(View):
